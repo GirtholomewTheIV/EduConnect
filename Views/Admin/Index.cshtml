@@ -1,0 +1,23 @@
+@model IEnumerable<User>
+
+<h1>Admin Portal</h1>
+<p class="lead">Manage EduConnect accounts, classes and audit records.</p>
+
+<div class="grid">
+    <a class="card link-card" asp-controller="Admin" asp-action="Users">
+        <div class="card-icon">👥</div>
+        <h2>Users</h2>
+        <p class="card-caption">View system accounts and roles.</p>
+        <p class="card-caption"><span class="badge">@(Model?.Count() ?? 0) accounts</span></p>
+    </a>
+    <a class="card link-card" asp-controller="Admin" asp-action="Classes">
+        <div class="card-icon">🏫</div>
+        <h2>Classes</h2>
+        <p class="card-caption">View classrooms and class teachers.</p>
+    </a>
+    <a class="card link-card" asp-controller="Admin" asp-action="Audit">
+        <div class="card-icon">🛡️</div>
+        <h2>POPIA Audit</h2>
+        <p class="card-caption">View access and account activity.</p>
+    </a>
+</div>

@@ -1,0 +1,33 @@
+@model IEnumerable<MessageListItemViewModel>
+
+<div class="page-heading">
+    <div>
+        <h1>Messages</h1>
+        <p class="lead">Parent-teacher communication.</p>
+    </div>
+    <a class="button" asp-action="Send">New Message</a>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>From</th>
+            <th>To</th>
+            <th>Message</th>
+            <th>Read</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (MessageListItemViewModel item in Model)
+    {
+        <tr>
+            <td>@item.SentAt</td>
+            <td>@item.FromName</td>
+            <td>@item.ToName</td>
+            <td>@item.MessageText</td>
+            <td>@(item.IsRead ? "Yes" : "No")</td>
+        </tr>
+    }
+    </tbody>
+</table>

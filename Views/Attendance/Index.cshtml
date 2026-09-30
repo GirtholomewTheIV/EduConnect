@@ -1,0 +1,25 @@
+@model IEnumerable<AttendanceViewModel>
+
+<h1>Attendance</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Student</th>
+            <th>Date</th>
+            <th>Status</th>
+            <th>Reason</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (AttendanceViewModel item in Model)
+    {
+        <tr>
+            <td>@item.StudentName</td>
+            <td>@item.Date.ToShortDateString()</td>
+            <td>@item.Status</td>
+            <td>@item.ReasonForAbsence</td>
+        </tr>
+    }
+    </tbody>
+</table>

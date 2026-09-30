@@ -1,0 +1,31 @@
+@model IEnumerable<PopiaAuditLog>
+@{
+    Dictionary<string, string> names = (Dictionary<string, string>)ViewBag.UserNames;
+}
+
+<h1>POPIA Audit Log</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>User</th>
+            <th>Resource</th>
+            <th>Action</th>
+            <th>IP Address</th>
+            <th>Details</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (PopiaAuditLog item in Model)
+    {
+        <tr>
+            <td>@item.Timestamp</td>
+            <td>@(names.TryGetValue(item.UserId, out string? userName) ? userName : item.UserId)</td>
+            <td>@item.ResourceType</td>
+            <td>@item.ActionType</td>
+            <td>@item.IpAddress</td>
+            <td>@item.Details</td>
+        </tr>
+    }
+    </tbody>
+</table>

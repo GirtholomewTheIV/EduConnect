@@ -1,0 +1,28 @@
+<h1>Upload Report Card</h1>
+
+<form asp-action="Upload" method="post" enctype="multipart/form-data">
+    <div asp-validation-summary="All" class="validation"></div>
+
+    <div class="form-group">
+        <label>Student</label>
+        <select name="studentId" class="form-control">
+            @foreach (Student student in ViewBag.Students)
+            {
+                <option value="@student.UserId">@student.User.FullName - @student.StudentNumber</option>
+            }
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>Term</label>
+        <input name="term" class="form-control" placeholder="Term 1" required />
+    </div>
+
+    <div class="form-group">
+        <label>PDF File</label>
+        <input type="file" name="file" class="form-control" accept=".pdf" required />
+    </div>
+
+    <button type="submit" class="button">Upload</button>
+    <a class="button secondary" asp-action="Index">Cancel</a>
+</form>

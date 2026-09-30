@@ -1,0 +1,29 @@
+@model IEnumerable<Announcement>
+
+<div class="page-heading">
+    <div>
+        <h1>Notices and Announcements</h1>
+        <p class="lead">School events, meetings and important messages.</p>
+    </div>
+    @if (User.IsInRole("Teacher"))
+    {
+        <a class="button" asp-action="Create">Post Notice</a>
+    }
+</div>
+
+@foreach (Announcement item in Model)
+{
+    <div class="card announcement">
+        <h2>@item.Title</h2>
+        <p class="muted">@item.DatePosted.ToString("dd MMMM yyyy HH:mm")</p>
+        <p>@item.Content</p>
+
+        @if (item.IsMeeting && User.IsInRole("Parent"))
+        {
+            <form asp-action="Rsvp" asp-route-id="@item.AnnouncementId" method="post" class="quick-links">
+                <button type="submit" name="status" value="Going" class="button">Will Attend</button>
+                <button type="submit" name="status" value="Not Going" class="button secondary">Will Not Attend</button>
+            </form>
+        }
+    </div>
+}

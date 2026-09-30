@@ -1,0 +1,641 @@
+html {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+}
+
+body {
+    margin: 0;
+    background: #f5f7fb;
+    color: #1f2937;
+}
+
+.container {
+    width: 92%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.navbar {
+    background: #163a5f;
+    color: white;
+    padding: 14px 0;
+}
+
+.nav-inner {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.brand {
+    color: white;
+    font-size: 22px;
+    font-weight: bold;
+    text-decoration: none;
+    margin-right: 12px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    flex: 1;
+}
+
+    .nav-links a,
+    .link-button {
+        color: white;
+        text-decoration: none;
+        border: 0;
+        background: none;
+        cursor: pointer;
+        font-size: 14px;
+    }
+
+.user-area {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.page {
+    padding: 36px 0 60px;
+}
+
+.footer {
+    padding: 20px 0;
+    background: #e8edf4;
+    text-align: center;
+    color: #667085;
+}
+
+.hero {
+    background: white;
+    border-radius: 12px;
+    padding: 50px;
+    margin-bottom: 28px;
+    box-shadow: 0 8px 24px rgba(0,0,0,.06);
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 18px;
+}
+
+.card,
+.form-card {
+    background: white;
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0,0,0,.05);
+}
+
+.link-card {
+    color: inherit;
+    text-decoration: none;
+}
+
+.button {
+    display: inline-block;
+    padding: 10px 16px;
+    background: #1f6aa5;
+    color: white;
+    text-decoration: none;
+    border: 0;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+    .button.secondary {
+        background: #6b7280;
+    }
+
+.quick-links {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.page-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.lead,
+.muted {
+    color: #667085;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+}
+
+    .table th,
+    .table td {
+        border: 1px solid #d9e0e8;
+        padding: 10px;
+        text-align: left;
+    }
+
+    .table th {
+        background: #edf2f7;
+    }
+
+.form-group {
+    margin-bottom: 16px;
+}
+
+.form-control {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+    border: 1px solid #b9c3cf;
+    border-radius: 6px;
+}
+
+.checkbox {
+    margin-bottom: 12px;
+}
+
+.validation {
+    color: #b42318;
+    margin-bottom: 12px;
+}
+
+.demo-box {
+    margin-top: 24px;
+    padding: 16px;
+    background: #f4f7fb;
+    border-radius: 8px;
+}
+
+.announcement {
+    margin-bottom: 16px;
+}
+/* ===== Polish pass ===== */
+
+/* Smoother text and spacing */
+body {
+    line-height: 1.5;
+}
+
+h1, h2, h3 {
+    color: #163a5f;
+    margin-top: 0;
+}
+
+/* Navbar: hover and keyboard focus feedback */
+.nav-links a {
+    padding: 6px 10px;
+    border-radius: 6px;
+    transition: background .15s;
+}
+
+    .nav-links a:hover,
+    .nav-links a:focus-visible {
+        background: rgba(255, 255, 255, .15);
+    }
+
+.navbar {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .15);
+}
+
+/* Cards: lift slightly when hovered */
+.link-card {
+    transition: transform .15s, box-shadow .15s;
+}
+
+    .link-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 24px rgba(0, 0, 0, .10);
+    }
+
+/* Icon circle for dashboard cards (used in the next step) */
+.card-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: #e3eefa;
+    color: #1f6aa5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    margin-bottom: 12px;
+}
+
+.card-caption {
+    color: #667085;
+    font-size: 14px;
+    margin: 4px 0 0;
+}
+
+/* Tables: cleaner, striped, with row hover */
+.table {
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, .05);
+}
+
+    .table th,
+    .table td {
+        border: 0;
+        border-bottom: 1px solid #e5eaf0;
+    }
+
+    .table tbody tr:nth-child(even) {
+        background: #f8fafc;
+    }
+
+    .table tbody tr:hover {
+        background: #eef4fb;
+    }
+
+/* Buttons: hover state */
+.button {
+    font-weight: 600;
+    transition: background .15s;
+}
+
+    .button:hover {
+        background: #17578a;
+    }
+
+    .button.secondary:hover {
+        background: #4b5563;
+    }
+
+/* Form fields: visible focus ring */
+.form-control:focus {
+    outline: 2px solid #1f6aa5;
+    outline-offset: 1px;
+}
+
+/* Small status badges (optional, for Active / Inactive etc.) */
+.badge {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+    background: #e3eefa;
+    color: #17578a;
+}
+
+    .badge.success {
+        background: #dcfce7;
+        color: #166534;
+    }
+
+    .badge.warning {
+        background: #fef3c7;
+        color: #92400e;
+    }
+
+    .badge.danger {
+        background: #fee2e2;
+        color: #991b1b;
+    }
+/* ===== Sidebar layout ===== */
+.app-shell {
+    display: flex;
+    min-height: 100vh;
+}
+
+.sidebar {
+    width: 250px;
+    flex-shrink: 0;
+    background: #163a5f;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    padding: 22px 14px;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    box-sizing: border-box;
+    overflow-y: auto;
+}
+
+    .sidebar .brand {
+        display: block;
+        margin: 0 0 24px 10px;
+    }
+
+.sidebar-group {
+    margin-bottom: 20px;
+}
+
+.sidebar-heading {
+    margin: 0 0 6px 12px;
+    font-size: 11px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: #9db6d1;
+}
+
+.side-link {
+    display: block;
+    padding: 9px 12px;
+    border-radius: 6px;
+    color: #e6eef8;
+    text-decoration: none;
+    font-size: 14px;
+    transition: background .15s;
+}
+
+    .side-link:hover,
+    .side-link:focus-visible {
+        background: rgba(255, 255, 255, .12);
+    }
+
+    .side-link.active {
+        background: #1f6aa5;
+        color: white;
+        font-weight: 600;
+    }
+
+.sidebar-user {
+    margin-top: auto;
+    padding-top: 14px;
+    border-top: 1px solid rgba(255, 255, 255, .2);
+    font-size: 14px;
+}
+
+.sidebar-username {
+    margin-bottom: 6px;
+    word-break: break-word;
+}
+
+.app-main {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+    .app-main .page {
+        flex: 1;
+        width: 92%;
+        box-sizing: border-box;
+    }
+
+.mobile-bar {
+    display: none;
+}
+
+/* Phones and small windows: sidebar slides in behind a menu button */
+@media (max-width: 800px) {
+    .sidebar {
+        position: fixed;
+        left: 0;
+        top: 0;
+        z-index: 20;
+        transform: translateX(-100%);
+        transition: transform .2s;
+    }
+
+    body.sidebar-open .sidebar {
+        transform: translateX(0);
+    }
+
+    .mobile-bar {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 12px 16px;
+        background: #163a5f;
+        color: white;
+    }
+
+        .mobile-bar .brand {
+            margin: 0;
+        }
+
+    .menu-toggle {
+        background: none;
+        border: 0;
+        color: white;
+        font-size: 24px;
+        cursor: pointer;
+    }
+}
+/* ===== Navigation animations ===== */
+
+/* Smooth cross-fade between pages (Chrome/Edge; other browsers ignore it) */
+@view-transition {
+    navigation: auto;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+    animation-duration: .2s;
+}
+
+/* Keep the sidebar fixed in place while the content changes */
+.sidebar {
+    view-transition-name: sidebar;
+}
+
+/* Page content slides up and fades in on every page */
+@keyframes rise {
+    from {
+        opacity: 0;
+        transform: translateY(14px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.page {
+    animation: rise .35s ease-out both;
+}
+
+/* Dashboard cards appear one after another */
+.grid > * {
+    animation: rise .4s ease-out both;
+}
+
+    .grid > *:nth-child(1) {
+        animation-delay: .05s;
+    }
+
+    .grid > *:nth-child(2) {
+        animation-delay: .12s;
+    }
+
+    .grid > *:nth-child(3) {
+        animation-delay: .19s;
+    }
+
+    .grid > *:nth-child(4) {
+        animation-delay: .26s;
+    }
+
+    .grid > *:nth-child(5) {
+        animation-delay: .33s;
+    }
+
+    .grid > *:nth-child(6) {
+        animation-delay: .40s;
+    }
+
+/* Sidebar links nudge right on hover, and the active page glides in */
+.side-link {
+    transition: background .15s, padding-left .15s;
+}
+
+    .side-link:hover {
+        padding-left: 16px;
+    }
+
+/* Table rows fade in softly */
+.table tbody tr {
+    animation: rise .3s ease-out both;
+}
+
+/* Respect users who prefer no motion */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+    }
+
+    ::view-transition-group(*),
+    ::view-transition-old(*),
+    ::view-transition-new(*) {
+        animation: none !important;
+    }
+}
+/* ===== Dark mode ===== */
+.theme-toggle {
+    width: 100%;
+    text-align: left;
+    margin-bottom: 8px;
+    padding: 7px 10px;
+    border: 0;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, .12);
+    color: white;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+    .theme-toggle:hover {
+        background: rgba(255, 255, 255, .2);
+    }
+
+:root[data-theme="dark"] {
+    color-scheme: dark;
+}
+
+    :root[data-theme="dark"] body {
+        background: #0f172a;
+        color: #e5e7eb;
+    }
+
+    :root[data-theme="dark"] h1,
+    :root[data-theme="dark"] h2,
+    :root[data-theme="dark"] h3 {
+        color: #e2e8f0;
+    }
+
+    :root[data-theme="dark"] .lead,
+    :root[data-theme="dark"] .muted,
+    :root[data-theme="dark"] .card-caption {
+        color: #94a3b8;
+    }
+
+    :root[data-theme="dark"] .card,
+    :root[data-theme="dark"] .form-card,
+    :root[data-theme="dark"] .hero {
+        background: #1e293b;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, .35);
+    }
+
+    :root[data-theme="dark"] .link-card:hover {
+        box-shadow: 0 10px 24px rgba(0, 0, 0, .5);
+    }
+
+    :root[data-theme="dark"] .card-icon {
+        background: #1e3a5f;
+        color: #7cb8ee;
+    }
+
+    :root[data-theme="dark"] .badge {
+        background: #1e3a5f;
+        color: #9cc8f0;
+    }
+
+        :root[data-theme="dark"] .badge.success {
+            background: #14532d;
+            color: #bbf7d0;
+        }
+
+        :root[data-theme="dark"] .badge.warning {
+            background: #713f12;
+            color: #fde68a;
+        }
+
+        :root[data-theme="dark"] .badge.danger {
+            background: #7f1d1d;
+            color: #fecaca;
+        }
+
+    :root[data-theme="dark"] .table {
+        background: #1e293b;
+    }
+
+        :root[data-theme="dark"] .table th {
+            background: #263449;
+            color: #e2e8f0;
+        }
+
+        :root[data-theme="dark"] .table th,
+        :root[data-theme="dark"] .table td {
+            border-color: #334155;
+        }
+
+        :root[data-theme="dark"] .table tbody tr:nth-child(even) {
+            background: #223047;
+        }
+
+        :root[data-theme="dark"] .table tbody tr:hover {
+            background: #2b3b55;
+        }
+
+    :root[data-theme="dark"] .form-control {
+        background: #0f172a;
+        color: #e5e7eb;
+        border-color: #475569;
+    }
+
+    :root[data-theme="dark"] .validation {
+        color: #f87171;
+    }
+
+    :root[data-theme="dark"] .demo-box {
+        background: #1e293b;
+    }
+
+    :root[data-theme="dark"] .footer {
+        background: #1e293b;
+        color: #94a3b8;
+    }
+
+    :root[data-theme="dark"] .sidebar,
+    :root[data-theme="dark"] .navbar,
+    :root[data-theme="dark"] .mobile-bar {
+        background: #0b1a2e;
+    }

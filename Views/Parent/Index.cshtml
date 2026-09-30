@@ -1,0 +1,31 @@
+@model IEnumerable<Student>
+
+<h1>Parent Portal</h1>
+<p class="lead">Select a child and open the information you need. Grades, attendance, homework, timetable and report cards will show that child only.</p>
+
+@if (ViewBag.SelectedUserId != null)
+{
+    <p><a class="button secondary" asp-controller="Parent" asp-action="SwitchChild" asp-route-id="all">Show all children</a></p>
+}
+
+<div class="grid">
+@foreach (Student child in Model)
+{
+    <div class="card">
+        <h2>@child.User.FullName @if (child.UserId == (string?)ViewBag.SelectedUserId) { <span class="badge">Selected</span> }</h2>
+        <p>Student Number: @child.StudentNumber</p>
+        <p>Grade: @child.GradeLevel</p>
+        <p>Class: @child.Classroom.Name</p>
+        <a class="button" asp-controller="Parent" asp-action="SwitchChild" asp-route-id="@child.StudentNumber">Select Child</a>
+    </div>
+}
+</div>
+
+<div class="quick-links">
+    <a class="button secondary" asp-controller="Grades" asp-action="Index">View Grades</a>
+    <a class="button secondary" asp-controller="Attendance" asp-action="Index">View Attendance</a>
+    <a class="button secondary" asp-controller="Homework" asp-action="Index">Homework Calendar</a>
+    <a class="button secondary" asp-controller="Announcements" asp-action="Index">Notices</a>
+    <a class="button secondary" asp-controller="Messages" asp-action="Index">Messages</a>
+    <a class="button secondary" asp-controller="ReportCards" asp-action="Index">Report Cards</a>
+</div>

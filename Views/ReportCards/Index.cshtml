@@ -1,0 +1,47 @@
+@model IEnumerable<ReportCardViewModel>
+
+<div class="page-heading">
+    <div>
+        <h1>Report Cards</h1>
+        <p class="lead">Secure report-card documents and version history.</p>
+    </div>
+    @if (User.IsInRole("Teacher"))
+    {
+        <a class="button" asp-action="Upload">Upload Report Card</a>
+    }
+</div>
+
+@if (!Model.Any())
+{
+    <div class="card">
+        <p class="muted">No report cards have been uploaded yet.</p>
+    </div>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Student</th>
+                <th>Term</th>
+                <th>Academic Year</th>
+                <th>Version</th>
+                <th>Uploaded</th>
+                <th>File</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (ReportCardViewModel item in Model)
+        {
+            <tr>
+                <td>@item.StudentName</td>
+                <td>@item.Term</td>
+                <td>@item.AcademicYear</td>
+                <td>@item.Version</td>
+                <td>@item.UploadedAt.ToString("dd MMM yyyy HH:mm")</td>
+                <td><a asp-action="Download" asp-route-id="@item.ReportCardId" target="_blank">Open PDF</a></td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}

@@ -1,0 +1,41 @@
+@model EduConnect.Models.TestMark
+
+<div class="page-heading">
+    <h1>Edit Mark</h1>
+    <a class="button secondary" asp-action="Index">Back to Grades</a>
+</div>
+
+<div class="form-card">
+    <p><strong>Learner:</strong> @ViewBag.StudentName<br />
+       <strong>Subject:</strong> @ViewBag.SubjectName</p>
+
+    <form asp-action="Edit" asp-route-id="@Model.MarkId" method="post">
+        <div asp-validation-summary="ModelOnly" class="validation"></div>
+
+        <div class="form-group">
+            <label asp-for="Score"></label>
+            <input asp-for="Score" class="form-control" step="any" />
+            <span asp-validation-for="Score" class="validation"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="MaxScore"></label>
+            <input asp-for="MaxScore" class="form-control" step="any" />
+            <span asp-validation-for="MaxScore" class="validation"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="AssessmentDate"></label>
+            <input asp-for="AssessmentDate" class="form-control" />
+            <span asp-validation-for="AssessmentDate" class="validation"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Notes"></label>
+            <textarea asp-for="Notes" class="form-control" rows="4"></textarea>
+            <span asp-validation-for="Notes" class="validation"></span>
+        </div>
+
+        <button type="submit" class="button">Save changes</button>
+    </form>
+</div>

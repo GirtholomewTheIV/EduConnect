@@ -1,0 +1,53 @@
+@model IEnumerable<CourseMaterial>
+
+<div class="page-heading">
+    <div>
+        <h1>Course Materials</h1>
+        <p class="lead">Learning resources uploaded by teachers.</p>
+    </div>
+
+    @if (User.IsInRole("Teacher"))
+    {
+        <a class="button" asp-action="Create">Add Material</a>
+    }
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>View</th>
+            <th>Download</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @foreach (CourseMaterial item in Model)
+        {
+            <tr>
+                <td>@item.Title</td>
+
+                <td>@item.Description</td>
+
+                <td>
+                    <a class="button secondary"
+                       asp-action="Open"
+                       asp-route-id="@item.MaterialId"
+                       target="_blank">
+                        Open
+                    </a>
+                </td>
+                <td>
+                    <a class="button"
+                       asp-action="Download"
+                       asp-route-id="@item.MaterialId">
+                        Download
+                        </a>
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>

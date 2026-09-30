@@ -1,0 +1,35 @@
+@model Teacher
+
+<h1>Teacher Portal</h1>
+<p class="lead">Welcome, @Model.User.FullName.</p>
+
+<div class="grid">
+    <a class="card link-card" asp-controller="Grades" asp-action="Index">
+        <h2>Marks</h2>
+        <p>View learner marks.</p>
+    </a>
+    <a class="card link-card" asp-controller="Attendance" asp-action="Index">
+        <h2>Attendance</h2>
+        <p>View attendance records.</p>
+    </a>
+    <a class="card link-card" asp-controller="Homework" asp-action="Create">
+        <h2>Homework</h2>
+        <p>Create a homework item.</p>
+    </a>
+    <a class="card link-card" asp-controller="Materials" asp-action="Create">
+        <h2>Materials</h2>
+        <p>Add course materials.</p>
+    </a>
+    <a class="card link-card" asp-controller="Announcements" asp-action="Create">
+        <h2>Notices</h2>
+        <p>Post announcements.</p>
+    </a>
+    <a class="card link-card" asp-controller="ReportCards" asp-action="Upload">
+        <h2>Report Cards</h2>
+        <p>Upload learner report cards.</p>
+    </a>
+    <a class="card link-card" asp-controller="Messages" asp-action="Send">
+        <h2>Messages</h2>
+        <p>Message a parent.</p>
+    </a>
+</div>

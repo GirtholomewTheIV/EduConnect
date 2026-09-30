@@ -1,0 +1,24 @@
+@model IEnumerable<Classroom>
+
+<h1>Classes</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Grade</th>
+            <th>Academic Year</th>
+            <th>Class Teacher</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (Classroom item in Model)
+    {
+        <tr>
+            <td>@item.Name</td>
+            <td>@item.GradeLevel</td>
+            <td>@item.AcademicYear</td>
+            <td>@item.ClassTeacher.User.FullName</td>
+        </tr>
+    }
+    </tbody>
+</table>

@@ -1,0 +1,60 @@
+@model IEnumerable<GradeViewModel>
+
+<div class="page-heading">
+    <div>
+        <h1>Grades</h1>
+        <p class="lead">Test marks, percentages and teacher progress notes.</p>
+    </div>
+    @if (User.IsInRole("Teacher"))
+    {
+        <a class="button" asp-action="Create">+ Add Mark</a>
+    }
+</div>
+
+@if (TempData["Message"] is string message)
+{
+    <div class="card" style="margin-bottom:16px">@message</div>
+}
+
+@if (!Model.Any())
+{
+    <div class="card">
+        <p class="muted">No marks have been recorded yet.</p>
+    </div>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.StudentName)</th>
+                <th>@Html.DisplayNameFor(model => model.SubjectName)</th>
+                <th>@Html.DisplayNameFor(model => model.Score)</th>
+                <th>Percentage</th>
+                <th>@Html.DisplayNameFor(model => model.AssessmentDate)</th>
+                <th>Progress Notes</th>
+                @if (User.IsInRole("Teacher"))
+                {
+                    <th></th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (GradeViewModel item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.StudentName)</td>
+                <td>@Html.DisplayFor(modelItem => item.SubjectName)</td>
+                <td>@item.Score.ToString("0.##") / @item.MaxScore.ToString("0.##")</td>
+                <td>@item.Percentage.ToString("0.##")%</td>
+                <td>@item.AssessmentDate.ToString("dd MMM yyyy")</td>
+                <td>@(string.IsNullOrWhiteSpace(item.Notes) ? "—" : item.Notes)</td>
+                @if (User.IsInRole("Teacher"))
+                {
+                    <td><a asp-action="Edit" asp-route-id="@item.MarkId">Edit</a></td>
+                }
+            </tr>
+        }
+        </tbody>
+    </table>
+}

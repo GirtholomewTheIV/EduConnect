@@ -1,0 +1,32 @@
+@model IEnumerable<Homework>
+
+<div class="page-heading">
+    <div>
+        <h1>Homework</h1>
+        <p class="lead">Upcoming assignment due dates.</p>
+    </div>
+    @if (User.IsInRole("Teacher"))
+    {
+        <a class="button" asp-action="Create">Create Homework</a>
+    }
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Due Date</th>
+            <th>Overdue</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (Homework item in Model)
+    {
+        <tr>
+            <td>@item.Title</td>
+            <td>@item.DueDate.ToShortDateString()</td>
+            <td>@item.IsOverdue</td>
+        </tr>
+    }
+    </tbody>
+</table>

@@ -1,0 +1,20 @@
+@model Student
+
+<h1>Student Portal</h1>
+
+<div class="card">
+    <h2>@Model.User.FullName</h2>
+    <p>Student Number: @Model.StudentNumber</p>
+    <p>Grade: @Model.GradeLevel</p>
+    <p>Class: @Model.Classroom.Name</p>
+</div>
+
+<div class="quick-links">
+    <a class="button secondary" asp-controller="Grades" asp-action="Index">Grades</a>
+    <a class="button secondary" asp-controller="Attendance" asp-action="Index">Attendance</a>
+    <a class="button secondary" asp-controller="Homework" asp-action="Index">Homework</a>
+    <a class="button secondary" asp-controller="Materials" asp-action="Index">Materials</a>
+    <a class="button secondary" asp-controller="Announcements" asp-action="Index">Notices</a>
+    <a class="button secondary" asp-controller="Timetable" asp-action="Index">Timetable</a>
+    <a class="button secondary" asp-controller="ReportCards" asp-action="Index">Report Cards</a>
+</div>

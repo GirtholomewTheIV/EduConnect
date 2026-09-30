@@ -1,0 +1,29 @@
+@model IEnumerable<TimetableEntry>
+
+<h1>Timetable</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Day</th>
+            <th>Class</th>
+            <th>Subject</th>
+            <th>Start</th>
+            <th>End</th>
+            <th>Room</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (TimetableEntry item in Model)
+    {
+        <tr>
+            <td>@item.Day</td>
+            <td>@item.Classroom.Name</td>
+            <td>@item.Subject.SubjectName</td>
+            <td>@item.StartTime.ToString("hh\\:mm")</td>
+            <td>@item.EndTime.ToString("hh\\:mm")</td>
+            <td>@item.RoomNumber</td>
+        </tr>
+    }
+    </tbody>
+</table>

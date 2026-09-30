@@ -1,0 +1,151 @@
+@{
+    var isSignedIn = User.Identity != null && User.Identity.IsAuthenticated;
+    var currentController = ViewContext.RouteData.Values["controller"]?.ToString() ?? "";
+    var currentAction = ViewContext.RouteData.Values["action"]?.ToString() ?? "";
+
+    string Active(string controller, string? action = null) =>
+        currentController.Equals(controller, StringComparison.OrdinalIgnoreCase) &&
+        (action == null || currentAction.Equals(action, StringComparison.OrdinalIgnoreCase))
+            ? "active" : "";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EduConnect</title>
+    <link rel="stylesheet" href="~/css/site.css" />
+    <script>
+        (function () {
+            var saved = null;
+            try { saved = localStorage.getItem('theme'); } catch (e) { }
+            var dark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            document.documentElement.setAttribute('data-theme', saved || (dark ? 'dark' : 'light'));
+        })();
+    </script>
+</head>
+<body>
+@if (isSignedIn)
+{
+    <div class="app-shell">
+        <aside class="sidebar" id="sidebar">
+            <a class="brand" asp-controller="Home" asp-action="Index">EduConnect</a>
+
+            <nav>
+                <div class="sidebar-group">
+                    @if (User.IsInRole("Teacher"))
+                    {
+                        <a class="side-link @Active("Teacher")" asp-controller="Teacher" asp-action="Index">Dashboard</a>
+                    }
+                    @if (User.IsInRole("Parent"))
+                    {
+                        <a class="side-link @Active("Parent")" asp-controller="Parent" asp-action="Index">Dashboard</a>
+                    }
+                    @if (User.IsInRole("Student"))
+                    {
+                        <a class="side-link @Active("Student")" asp-controller="Student" asp-action="Index">Dashboard</a>
+                    }
+                </div>
+
+                @if (User.IsInRole("Admin"))
+                {
+                    <div class="sidebar-group">
+                        <p class="sidebar-heading">Administration</p>
+                        <a class="side-link @Active("Admin", "Index")" asp-controller="Admin" asp-action="Index">Admin Portal</a>
+                        <a class="side-link @Active("Admin", "Users")" asp-controller="Admin" asp-action="Users">Users</a>
+                        <a class="side-link @Active("Admin", "Classes")" asp-controller="Admin" asp-action="Classes">Classes</a>
+                        <a class="side-link @Active("Admin", "Audit")" asp-controller="Admin" asp-action="Audit">Audit</a>
+                    </div>
+                }
+
+                <div class="sidebar-group">
+                    <p class="sidebar-heading">Academics</p>
+                    <a class="side-link @Active("Grades")" asp-controller="Grades" asp-action="Index">Grades</a>
+                    <a class="side-link @Active("Attendance")" asp-controller="Attendance" asp-action="Index">Attendance</a>
+                    <a class="side-link @Active("Homework")" asp-controller="Homework" asp-action="Index">Homework</a>
+                    <a class="side-link @Active("Materials")" asp-controller="Materials" asp-action="Index">Materials</a>
+                    <a class="side-link @Active("Timetable")" asp-controller="Timetable" asp-action="Index">Timetable</a>
+                    <a class="side-link @Active("ReportCards")" asp-controller="ReportCards" asp-action="Index">Report Cards</a>
+                </div>
+
+                <div class="sidebar-group">
+                    <p class="sidebar-heading">Communication</p>
+                    <a class="side-link @Active("Announcements")" asp-controller="Announcements" asp-action="Index">Notices</a>
+                    <a class="side-link @Active("Messages")" asp-controller="Messages" asp-action="Index">Messages</a>
+                </div>
+            </nav>
+
+            <div class="sidebar-user">
+                <div class="sidebar-username">@User.Identity!.Name</div>
+                <form asp-controller="Account" asp-action="Logout" method="post">
+                    <button type="submit" class="link-button">Sign out</button>
+                </form>
+                <button type="button" class="theme-toggle" data-theme-toggle></button>
+            </div>
+        </aside>
+
+        <div class="app-main">
+            <div class="mobile-bar">
+                <button type="button" class="menu-toggle" aria-label="Toggle menu"
+                        onclick="document.body.classList.toggle('sidebar-open')">☰</button>
+                <span class="brand">EduConnect</span>
+            </div>
+
+            <main class="container page">
+                @RenderBody()
+            </main>
+
+            <footer class="footer">
+                <div class="container">
+                    EduConnect - Parent, Teacher, Student and Admin Portal
+                </div>
+            </footer>
+        </div>
+    </div>
+}
+else
+{
+    <header class="navbar">
+        <div class="container nav-inner">
+            <a class="brand" asp-controller="Home" asp-action="Index">EduConnect</a>
+            <button type="button" class="theme-toggle" data-theme-toggle style="width:auto"></button>
+            <a class="button" asp-controller="Account" asp-action="Login">Sign in</a>
+        </div>
+    </header>
+
+    <main class="container page">
+        @RenderBody()
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            EduConnect - Parent, Teacher, Student and Admin Portal
+        </div>
+    </footer>
+}
+    <script>
+        (function () {
+            var root = document.documentElement;
+            var buttons = document.querySelectorAll('[data-theme-toggle]');
+
+            function refresh() {
+                var dark = root.getAttribute('data-theme') === 'dark';
+                buttons.forEach(function (b) {
+                    b.textContent = dark ? '☀️ Light mode' : '🌙 Dark mode';
+                });
+            }
+
+            buttons.forEach(function (b) {
+                b.addEventListener('click', function () {
+                    var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+                    root.setAttribute('data-theme', next);
+                    try { localStorage.setItem('theme', next); } catch (e) { }
+                    refresh();
+                });
+            });
+
+            refresh();
+        })();
+    </script>
+</body>
+</html>
