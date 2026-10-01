@@ -55,6 +55,7 @@
                         <a class="side-link @Active("Admin", "Users")" asp-controller="Admin" asp-action="Users">Users</a>
                         <a class="side-link @Active("Admin", "Classes")" asp-controller="Admin" asp-action="Classes">Classes</a>
                         <a class="side-link @Active("Admin", "Audit")" asp-controller="Admin" asp-action="Audit">Audit</a>
+                        <a class="side-link @Active("Settings")" asp-controller="Settings" asp-action="Index">Settings</a>
                     </div>
                 }
 
@@ -131,7 +132,7 @@ else
             function refresh() {
                 var dark = root.getAttribute('data-theme') === 'dark';
                 buttons.forEach(function (b) {
-                    b.textContent = dark ? '☀️ Light mode' : '🌙 Dark mode';
+                    b.textContent = dark ? 'Light mode' : 'Dark mode';
                 });
             }
 

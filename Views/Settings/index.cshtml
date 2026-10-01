@@ -1,0 +1,97 @@
+@model EduConnect.ViewModels.SettingsPageViewModel
+
+<h1>Settings</h1>
+<p class="lead">Manage your profile, password and appearance.</p>
+
+@if (TempData["Message"] is string message)
+{
+    <div class="card" style="max-width:640px;margin-bottom:18px">@message</div>
+}
+
+<div class="form-card" style="max-width:640px;margin-bottom:18px">
+    <h2>Profile</h2>
+
+    <p class="muted">
+        Email: <strong>@Model.Email</strong><br />
+        Role: <strong>@Model.Role</strong><br />
+        Your email and role cannot be changed from this page.
+    </p>
+
+    <form asp-action="UpdateProfile" method="post">
+        <div class="form-group">
+            <label asp-for="Profile.FullName"></label>
+            <input asp-for="Profile.FullName" class="form-control" autocomplete="name" />
+            <span asp-validation-for="Profile.FullName" class="validation"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Profile.PhoneNumber"></label>
+            <input asp-for="Profile.PhoneNumber" class="form-control" autocomplete="tel" />
+            <span asp-validation-for="Profile.PhoneNumber" class="validation"></span>
+        </div>
+
+        <button type="submit" class="button">Save profile</button>
+    </form>
+</div>
+
+<div class="form-card" style="max-width:640px;margin-bottom:18px">
+    <h2>Change password</h2>
+
+    <form asp-action="ChangePassword" method="post">
+        <div class="form-group">
+            <label asp-for="Password.CurrentPassword"></label>
+            <input asp-for="Password.CurrentPassword" class="form-control" autocomplete="current-password" />
+            <span asp-validation-for="Password.CurrentPassword" class="validation"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Password.NewPassword"></label>
+            <input asp-for="Password.NewPassword" class="form-control" autocomplete="new-password" />
+            <span asp-validation-for="Password.NewPassword" class="validation"></span>
+            <small class="muted">At least 8 characters.</small>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Password.ConfirmPassword"></label>
+            <input asp-for="Password.ConfirmPassword" class="form-control" autocomplete="new-password" />
+            <span asp-validation-for="Password.ConfirmPassword" class="validation"></span>
+        </div>
+
+        <button type="submit" class="button">Change password</button>
+    </form>
+</div>
+
+@if (Model.IsParent)
+{
+    <div class="form-card" style="max-width:640px;margin-bottom:18px">
+        <h2>Notification preference</h2>
+        <p class="muted">Choose how the school contacts you about notices and attendance alerts.</p>
+
+        <form asp-action="UpdateNotifications" method="post">
+            <div class="form-group">
+                <label class="checkbox">
+                    <input type="radio" asp-for="Notifications.Preference" value="Portal" />
+                    Portal only: I will check the EduConnect website.
+                </label>
+                <label class="checkbox">
+                    <input type="radio" asp-for="Notifications.Preference" value="SMS" />
+                    SMS only: send messages to my phone number (currently
+                    <strong>@(string.IsNullOrWhiteSpace(Model.Profile.PhoneNumber) ? "not set" : Model.Profile.PhoneNumber)</strong>).
+                </label>
+                <label class="checkbox">
+                    <input type="radio" asp-for="Notifications.Preference" value="Both" />
+                    Both: portal and SMS.
+                </label>
+                <span asp-validation-for="Notifications.Preference" class="validation"></span>
+            </div>
+
+            <button type="submit" class="button">Save preference</button>
+        </form>
+    </div>
+}
+
+<div class="form-card" style="max-width:640px">
+    <h2>Appearance</h2>
+    <p class="muted">Choose between the light and dark theme. Your choice is remembered in this browser.</p>
+    <button type="button" class="button secondary" data-theme-toggle></button>
+</div>
