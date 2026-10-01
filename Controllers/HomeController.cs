@@ -1,4 +1,7 @@
+using EduConnect.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace EduConnect.Controllers
 {
@@ -41,5 +44,6 @@ namespace EduConnect.Controllers
         {
             return View();
         }
+        
     }
 }

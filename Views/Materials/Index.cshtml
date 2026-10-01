@@ -11,6 +11,10 @@
         <a class="button" asp-action="Create">Add Material</a>
     }
 </div>
+  @if (TempData["Message"] is string message)
+  {
+    <div class="card" style="margin-bottom:16px">@message</div>
+  }
 
 <table class="table">
     <thead>
@@ -19,6 +23,10 @@
             <th>Description</th>
             <th>View</th>
             <th>Download</th>
+            @if (User.IsInRole("Admin"))
+            {
+                <th>Delete</th>
+            }
         </tr>
     </thead>
 
@@ -46,6 +54,15 @@
                         Download
                         </a>
                 </td>
+                @if (User.IsInRole("Admin"))
+                  {
+                    <td>
+                        <form asp-action="Delete" asp-route-id="@item.MaterialId" method="post"
+                              onsubmit="return confirm('Delete this material and its file? This cannot be undone.');">
+                            <button type="submit" class="button" style="background:#b91c1c">Delete</button>
+                        </form>
+                    </td>
+                }
             </tr>
         }
 

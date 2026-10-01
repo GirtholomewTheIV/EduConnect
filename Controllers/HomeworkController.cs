@@ -90,5 +90,30 @@ namespace EduConnect.Controllers
             ViewBag.Subjects = db.Subjects.OrderBy(x => x.SubjectName).ToList();
             return View(model);
         }
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        [ValidateAntiForgeryToken]
+        public IActionResult Delete(int id)
+        {
+            Homework? homework = db.Homeworks.FirstOrDefault(x => x.HomeworkId == id);
+            if (homework == null) return NotFound();
+
+            db.Homeworks.Remove(homework);
+
+            db.PopiaAuditLogs.Add(new PopiaAuditLog
+            {
+                UserId = User.FindFirstValue(ClaimTypes.NameIdentifier)!,
+                TargetUserId = homework.TeacherId,
+                ResourceType = "Homework",
+                ActionType = "Delete",
+                IpAddress = HttpContext.Connection.RemoteIpAddress?.ToString(),
+                Details = "Admin deleted homework: " + homework.Title
+            });
+
+            db.SaveChanges();
+
+            TempData["Message"] = "Homework deleted.";
+            return RedirectToAction(nameof(Index));
+        }
     }
 }

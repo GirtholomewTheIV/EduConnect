@@ -77,7 +77,35 @@ namespace EduConnect.Controllers
 
             return View(model);
         }
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        [ValidateAntiForgeryToken]
+        public IActionResult Delete(int id)
+        {
+            CourseMaterial? material = db.CourseMaterials.FirstOrDefault(x => x.MaterialId == id);
+            if (material == null) return NotFound();
 
+            // Remove the physical file first
+            string path = Path.Combine(StorageFolder, Path.GetFileName(material.FilePath));
+            if (System.IO.File.Exists(path)) System.IO.File.Delete(path);
+
+            db.CourseMaterials.Remove(material);
+
+            db.PopiaAuditLogs.Add(new PopiaAuditLog
+            {
+                UserId = User.FindFirstValue(ClaimTypes.NameIdentifier)!,
+                TargetUserId = material.TeacherId,
+                ResourceType = "CourseMaterial",
+                ActionType = "Delete",
+                IpAddress = HttpContext.Connection.RemoteIpAddress?.ToString(),
+                Details = "Admin deleted material: " + material.Title
+            });
+
+            db.SaveChanges();
+
+            TempData["Message"] = "Material deleted.";
+            return RedirectToAction(nameof(Index));
+        }
         public IActionResult Download(int id)
         {
             CourseMaterial? material = db.CourseMaterials.FirstOrDefault(x => x.MaterialId == id);
