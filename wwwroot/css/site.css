@@ -106,6 +106,11 @@ body {
     border: 0;
     border-radius: 6px;
     cursor: pointer;
+    font-family: inherit;
+    font-size: 15px;
+    line-height: 1.2;
+    vertical-align: middle;
+    box-sizing: border-box;
 }
 
     .button.secondary {
@@ -541,7 +546,7 @@ h1, h2, h3 {
 }
 
     :root[data-theme="dark"] body {
-        background: #0f172a;
+        background: #121212;
         color: #e5e7eb;
     }
 
@@ -554,13 +559,13 @@ h1, h2, h3 {
     :root[data-theme="dark"] .lead,
     :root[data-theme="dark"] .muted,
     :root[data-theme="dark"] .card-caption {
-        color: #94a3b8;
+        color: #e2e8f0;
     }
 
     :root[data-theme="dark"] .card,
     :root[data-theme="dark"] .form-card,
     :root[data-theme="dark"] .hero {
-        background: #1e293b;
+        background: #2b2b2b;
         box-shadow: 0 6px 18px rgba(0, 0, 0, .35);
     }
 
@@ -569,12 +574,12 @@ h1, h2, h3 {
     }
 
     :root[data-theme="dark"] .card-icon {
-        background: #1e3a5f;
+        background: #2b2b2b;
         color: #7cb8ee;
     }
 
     :root[data-theme="dark"] .badge {
-        background: #1e3a5f;
+        background: #2b2b2b;
         color: #9cc8f0;
     }
 
@@ -594,21 +599,21 @@ h1, h2, h3 {
         }
 
     :root[data-theme="dark"] .table {
-        background: #1e293b;
+        background: #1b1b1b;
     }
 
         :root[data-theme="dark"] .table th {
-            background: #263449;
+            background: #1f2937;
             color: #e2e8f0;
         }
 
         :root[data-theme="dark"] .table th,
         :root[data-theme="dark"] .table td {
-            border-color: #334155;
+            border-color: #1b1b1b;
         }
 
         :root[data-theme="dark"] .table tbody tr:nth-child(even) {
-            background: #223047;
+            background: #3b3b3b;
         }
 
         :root[data-theme="dark"] .table tbody tr:hover {
@@ -626,18 +631,18 @@ h1, h2, h3 {
     }
 
     :root[data-theme="dark"] .demo-box {
-        background: #1e293b;
+        background: #2b2b2b;
     }
 
     :root[data-theme="dark"] .footer {
-        background: #1e293b;
-        color: #94a3b8;
+        background: #2b2b2b;
+        color: #e2e8f0;
     }
 
     :root[data-theme="dark"] .sidebar,
     :root[data-theme="dark"] .navbar,
     :root[data-theme="dark"] .mobile-bar {
-        background: #0b1a2e;
+        background: #2b2b2b;
     }
     /* ===== Signed-out header: brand on the left, buttons on the far right ===== */
 .navbar .nav-inner {
@@ -662,7 +667,7 @@ h1, h2, h3 {
     width: 100%;
     box-sizing: border-box;
     padding: 10px 16px;
-    background: #1f6aa5;
+    background: #2b2b2b;
     color: white;
     border: 0;
     border-radius: 6px;
@@ -674,13 +679,13 @@ h1, h2, h3 {
     transition: background .15s;
 }
 
-.sidebar-user .link-button:hover,
-.sidebar-user .link-button:focus-visible {
-    background: #17578a;
-}
+    .sidebar-user .link-button:hover,
+    .sidebar-user .link-button:focus-visible {
+        background: #2b2b2b;
+    }
 .sidebar-user .link-button {
     background: transparent;
-    border: 2px solid #1f6aa5;
+    border: 2px solid rgba(255, 255, 255, .12);
 }
 
 .sidebar-user .link-button:hover,
