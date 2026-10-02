@@ -1,0 +1,25 @@
+@model EduConnect.ViewModels.ForgotPasswordViewModel
+
+<h1>Forgot your password?</h1>
+<p class="lead">Enter your account email and we will send you a link to choose a new password.</p>
+
+@if (Model.Sent)
+{
+    <div class="card" style="max-width:640px;margin-bottom:18px">
+        If an account exists for that email address, a reset link has been sent.
+        The link is valid for 30 minutes and can be used once.
+    </div>
+}
+
+<div class="form-card" style="max-width:640px">
+    <form asp-action="Forgot" method="post">
+        <div class="form-group">
+            <label asp-for="Email"></label>
+            <input asp-for="Email" class="form-control" autocomplete="email" />
+            <span asp-validation-for="Email" class="validation"></span>
+        </div>
+
+        <button type="submit" class="button">Send reset link</button>
+        <a class="button secondary" asp-controller="Account" asp-action="Login">Back to sign in</a>
+    </form>
+</div>

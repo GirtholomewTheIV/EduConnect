@@ -21,6 +21,8 @@ builder.Services.AddAuthentication("EduConnectCookie")
 builder.Services.AddAuthorization();
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession();
+builder.Services.Configure<EduConnect.Services.EmailSettings>(builder.Configuration.GetSection("Email"));
+builder.Services.AddScoped<EduConnect.Services.IEmailService, EduConnect.Services.EmailService>();
 
 var app = builder.Build();
 

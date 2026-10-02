@@ -639,3 +639,51 @@ h1, h2, h3 {
     :root[data-theme="dark"] .mobile-bar {
         background: #0b1a2e;
     }
+    /* ===== Signed-out header: brand on the left, buttons on the far right ===== */
+.navbar .nav-inner {
+    width: auto;
+    max-width: none;
+    margin: 0;
+    padding: 0 24px;
+    gap: 12px;
+}
+
+    .navbar .nav-inner .theme-toggle {
+        width: auto;
+        margin: 0 0 0 auto;
+    }
+    /* ===== Sidebar: Sign out button styled like the Sign in button ===== */
+.sidebar-user form {
+    margin: 0;
+}
+
+.sidebar-user .link-button {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px 16px;
+    background: #1f6aa5;
+    color: white;
+    border: 0;
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+    transition: background .15s;
+}
+
+.sidebar-user .link-button:hover,
+.sidebar-user .link-button:focus-visible {
+    background: #17578a;
+}
+.sidebar-user .link-button {
+    background: transparent;
+    border: 2px solid #1f6aa5;
+}
+
+.sidebar-user .link-button:hover,
+.sidebar-user .link-button:focus-visible {
+    background: #1f6aa5;
+}
